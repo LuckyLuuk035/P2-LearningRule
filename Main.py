@@ -11,14 +11,12 @@ p2 = Perceptron("AND-gate")
 p2.bias = -1
 p2.weights = [0.5, 0.5]
 
-for i in [[0, 0], [0, 1], [1, 0], [1, 1]]:
-    p2.activate(i)
-    print(p2)
-
 p3 = Perceptron("OR-gate")
-p3.bias = -0.5
-p3.weights = [0.6, 0.2]  # were 0.5 0.5
+p3.bias = 0.5
+p3.w = [0, 0]  # were 0.5 0.5
 
+
+p3.update([[0, [0, 0]], [1, [0, 1]], [1, [1, 0]], [1, [1, 1]]])
 
 p4 = Perceptron("figuur 2.8")
 p4.bias = -0.4

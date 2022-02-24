@@ -2,8 +2,9 @@ from __future__ import print_function
 
 
 class Perceptron:
-    def __init__(self, bias=0, w=None):
-        self.b = bias
+    def __init__(self, name, w=None):
+        self.name = name
+        self.b = 0
         self.msg = -1
         if w is None:
             w = []
@@ -12,25 +13,42 @@ class Perceptron:
     def __str__(self):
         return self.msg
 
-    def update(self, d, event):
-        y = self.activate(self.w, event) # output
-        e = d - y
-        dw = 0.1 * e * event
+    def update(self, truthtable, epochs=20):
+        count = 0
+        target = []
+        input = []
+        for i in truthtable:
+            target.append(i[0])
+            input.append(i[1])
 
-    def activate(self, weights, event):
-        self.w = weights
+        for i in range(len(target)):
+            while count <= epochs:
+                d = target[i]
+                x = input[i]
+                y = self.activate(x)  # output
+                print(self)
+                e = d - y
+
+                for j in range(len(self.w)):
+                    self.w[j] += 0.1 * e * x[j]
+
+                db = 0.1 * e
+                self.b += db
+                count += 1
+
+    def activate(self, event):
         self.msg = ""
         som = 0
         for i in range(len(self.w)):
             self.msg += "'" + str(event[i]) + "i " + str(self.w[i]) + "w" + "'  "
             som = som + event[i]*self.w[i]
-
-        if som + self.b < 0:
+        self.msg += str(self.b) + "b  "
+        if float(som) + float(self.b) < 0:
             self.msg += "--->  " + str(0) + "         "
-            return 0
-        elif som + self.b >= 0:
+            return -1
+        elif float(som) + float(self.b) >= 0:
             self.msg += "--->  " + str(1) + "         "
             return 1
         else:  # in het geval van een error (Maak hier een 'try except' van)
             self.msg += "  x   " + str(-1) + "        "
-            return -1
+            return 0
