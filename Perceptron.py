@@ -30,7 +30,7 @@ class Perceptron:
                 e = d - y
 
                 for j in range(len(self.w)):
-                    self.w[j] += 0.1 * e * x[j]
+                    self.w[j] += 0.1 * e * y
 
                 db = 0.1 * e
                 self.b += db
@@ -45,10 +45,10 @@ class Perceptron:
         self.msg += str(self.b) + "b  "
         if float(som) + float(self.b) < 0:
             self.msg += "--->  " + str(0) + "         "
-            return -1
+            return 0
         elif float(som) + float(self.b) >= 0:
             self.msg += "--->  " + str(1) + "         "
             return 1
         else:  # in het geval van een error (Maak hier een 'try except' van)
             self.msg += "  x   " + str(-1) + "        "
-            return 0
+            return -1
