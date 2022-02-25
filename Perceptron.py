@@ -14,13 +14,6 @@ class Perceptron:
         return self.msg
 
     def update(self, truthtable, epochs=25, show=False):
-        count = 0
-        target = []
-        input = []
-        for i in truthtable:
-            target.append(i[0])
-            input.append(i[1])
-
         for i in range(epochs):
             for row in truthtable:
                 d = row[0]
