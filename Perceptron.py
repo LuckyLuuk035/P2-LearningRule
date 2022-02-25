@@ -23,8 +23,8 @@ class Perceptron:
 
         for i in range(epochs):
             for row in truthtable:
-                d = target[count]  # set to row
-                x = input[count]
+                d = row[0]
+                x = row[1]
                 y = self.activate(x)  # output
 
                 self.msg += str(d)
@@ -37,8 +37,6 @@ class Perceptron:
                 for j in range(len(self.w)):
                     self.w[j] += 0.2 * e * x[j]
                 self.b += 0.2 * e
-                count += 1
-            count = 0
 
     def activate(self, event):
         self.msg = ""
