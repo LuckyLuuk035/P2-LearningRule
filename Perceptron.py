@@ -13,14 +13,14 @@ class Perceptron:
     def __str__(self):
         return self.msg
 
-    def update(self, truthtable, epochs=20):
+    def update(self, truthtable, epochs=5):
         count = 0
         target = []
         input = []
         for i in truthtable:
             target.append(i[0])
             input.append(i[1])
-
+        
         for i in range(len(target)):
             while count <= epochs:
                 d = target[i]
@@ -35,6 +35,8 @@ class Perceptron:
                 db = 0.1 * e
                 self.b += db
                 count += 1
+            count = 0
+            print(x, "done.  Predicted output should be:", d)
 
     def activate(self, event):
         self.msg = ""
