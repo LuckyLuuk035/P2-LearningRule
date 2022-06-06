@@ -6,7 +6,7 @@ p1 = Perceptron("AND-gate")
 p1.bias = random.uniform(-1, 1)
 p1.w = [random.uniform(-1, 1), random.uniform(-1, 1)]
 
-p2 = Perceptron("OR-gate")
+p2 = Perceptron("XOR-gate")
 p2.bias = random.uniform(-1, 1)
 p2.w = [random.uniform(-1, 1), random.uniform(-1, 1)]
 
