@@ -13,7 +13,7 @@ class Perceptron:
     def __str__(self):
         return self.msg
 
-    def update(self, truthtable, epochs=25, show=False):
+    def update(self, truthtable, epochs=25, learning_rate=0.2, show=False):
         for i in range(epochs):
             for row in truthtable:
                 d = row[0]
@@ -28,8 +28,8 @@ class Perceptron:
 
                 e = d - y
                 for j in range(len(self.w)):
-                    self.w[j] += 0.2 * e * x[j]
-                self.b += 0.2 * e
+                    self.w[j] += learning_rate * e * x[j]
+                self.b += learning_rate * e
 
     def activate(self, event):
         self.msg = ""
